@@ -20,10 +20,10 @@ files:
   - "history/adr/0001-package-management-with-pnpm.md"
   - "frontend/docusaurus.config.ts"
   - "frontend/sidebars.ts"
-  - "frontend/docs/01-foundations/_index.md"
-  - "frontend/docs/02-simulation/_index.md"
-  - "frontend/docs/03-perception/_index.md"
-  - "frontend/docs/04-vla/_index.md"
+  - "frontend/docs/foundations/_index.md"
+  - "frontend/docs/simulation/_index.md"
+  - "frontend/docs/perception/_index.md"
+  - "frontend/docs/vla/_index.md"
 tests: []
 ---
 

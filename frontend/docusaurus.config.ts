@@ -56,7 +56,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/matrix-bg.png',
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -64,7 +64,7 @@ const config: Config = {
       title: 'Embodied Intelligence',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/matrix-bg.png',
       },
       items: [
         {
@@ -88,7 +88,7 @@ const config: Config = {
           items: [
             {
               label: 'Foundations',
-              to: '/docs/01-foundations',
+              to: '/docs/foundations',
             },
           ],
         },

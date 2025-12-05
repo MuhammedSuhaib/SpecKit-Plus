@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.chapter-hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  background-image: url('/img/matrix-bg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.chapter-text {
+  font-family: 'Anton', sans-serif;
+  color: #f43887;
+  font-size: clamp(4rem, 16vw, 18rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  position: relative;
+  margin: 0;
+}
+
+.chapter-text .num {
+  position: absolute;
+
+  /* Perfect overlap placement */
+  right: 0.85em;   /* moves slightly right but still over the text */
+  top: -0.25em;     /* moves upward to overlap the P */
+
+  font-size: 1.35em;   /* slightly bigger just like your screenshot */
+  color: #fff;
+  text-shadow: 6px 6px #000;
+}

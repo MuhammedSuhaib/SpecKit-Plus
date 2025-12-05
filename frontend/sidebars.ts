@@ -18,25 +18,25 @@ const sidebars: SidebarsConfig = {
 
   // Manual sidebar for the Embodied Intelligence textbook
   tutorialSidebar: [
-    {
+      {
       type: 'category',
       label: 'Foundations',
-      items: ['01-foundations/_index'],
+      items: ['foundations/index'],
     },
     {
       type: 'category',
       label: 'Simulation',
-      items: ['02-simulation/_index'],
+      items: ['simulation/index'],
     },
     {
       type: 'category',
       label: 'Perception',
-      items: ['03-perception/_index'],
+      items: ['perception/index'],
     },
     {
       type: 'category',
       label: 'VLA',
-      items: ['04-vla/_index'],
+      items: ['vla/index'],
     },
   ],
 };
