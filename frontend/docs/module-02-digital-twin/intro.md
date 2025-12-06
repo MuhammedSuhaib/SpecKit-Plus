@@ -2,6 +2,6 @@
 sidebar_position: 1
 ---
 
-# Simulation
+# Why we simulate
 
-This section covers simulation techniques for Embodied Intelligence.
+Simulation serves as the cornerstone of embodied intelligence development, allowing us to test and validate robotic systems in safe, controlled virtual environments before deploying them in the real world. Through simulation, we can accelerate development cycles, reduce costs, and ensure safety by identifying potential issues before physical implementation.

@@ -2,23 +2,43 @@
 sidebar_position: 1
 ---
 
-# Module 4: Vision-Language-Action (VLA) Models
+# Module 4: Vision-Language-Action (VLA) - Overview
 
-This section covers Vision-Language-Action models in Embodied Intelligence, including voice integration with Whisper, VLA model architectures, and capstone implementation logic.
+Vision-Language-Action (VLA) systems represent the convergence of perception, cognition, and action in embodied AI. This module explores how visual processing, language understanding, and robotic control can be integrated to create intelligent agents capable of interacting naturally with their environment.
 
-## Overview
+## Introduction
 
-Vision-Language-Action (VLA) models represent a significant advancement in embodied intelligence, enabling robots and AI agents to perceive their environment, understand natural language commands, and execute physical actions. This module explores the integration of these three modalities to create intelligent agents capable of complex interactions with the physical world.
+Vision-Language-Action (VLA) systems are at the forefront of embodied intelligence, enabling robots to:
+- Perceive their environment through visual sensors
+- Understand natural language commands and instructions
+- Execute appropriate physical actions in response
 
-## Topics Covered
+This integration represents a paradigm shift from traditional robotic systems that process these modalities separately, toward unified systems that can handle complex, real-world tasks through natural human-robot interaction.
 
-1. [Whisper Voice Integration](./whisper-integration.md) - Integrating speech recognition and processing capabilities
-2. [VLA Models](./vla-models.md) - Understanding Vision-Language-Action model architectures
-3. [Capstone Logic](./capstone-logic.md) - Implementing end-to-end VLA system logic
+## Core Components
 
-## Learning Objectives
+The VLA framework consists of three essential components:
 
-By the end of this module, you should understand:
-- How to integrate voice recognition systems with robotic platforms
-- The fundamentals of Vision-Language-Action model architectures
-- How to implement complete VLA systems for embodied intelligence applications
+1. **Vision Processing**: Understanding the visual environment through cameras and other sensors
+2. **Language Understanding**: Interpreting natural language commands and contextual information
+3. **Action Execution**: Controlling robotic systems to perform physical tasks
+
+## Learning Path
+
+In this module, we'll explore:
+- Voice-to-Action systems using OpenAI Whisper and ROS 2
+- Integration of Large Language Models with robotic systems
+- Complete capstone project implementing an autonomous humanoid system
+
+## Module Structure
+
+- [Chapter 7: Whisper Voice Integration](./chapter-07-whisper.md) - Voice-to-Action logic with OpenAI Whisper and ROS 2
+- [Chapter 8: VLA Models](./chapter-08-vla-models.md) - Integrating LLMs with Robotics
+- [Capstone: Autonomous Humanoid Project](./capstone.md) - Final integration of all components
+
+## Prerequisites
+
+Before starting this module, ensure you have:
+- Basic understanding of ROS 2 concepts
+- Familiarity with neural networks and deep learning
+- Understanding of computer vision fundamentals

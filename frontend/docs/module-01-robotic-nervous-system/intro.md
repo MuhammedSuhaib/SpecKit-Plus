@@ -2,6 +2,6 @@
 sidebar_position: 1
 ---
 
-# Foundations
+# From Digital AI to Physical AI
 
-This section covers the foundational concepts of Embodied Intelligence.
+The transition from digital artificial intelligence to physical embodied intelligence represents a paradigm shift in how we conceptualize and implement AI systems. While traditional AI operates in virtual spaces, embodied intelligence brings cognition into the physical world through robots and other physical agents that can perceive, reason, and act in real environments.
