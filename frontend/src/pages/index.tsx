@@ -40,10 +40,10 @@ export default function Home(): ReactNode {
       description="Description will go into a meta tag in <head />"
     >
       <MatrixCanvas opacity={0.12} />
-      <div className="chapter-hero">
-        <h1 className="chapter-text">
-          CHAPTER
-          <span className="num">1</span>
+      <div >
+        <h1>
+          
+          <span >Physical AI & Humanoid Robotics</span>
         </h1>
       </div>{" "}
       <main>
