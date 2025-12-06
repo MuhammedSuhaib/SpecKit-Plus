@@ -75,7 +75,7 @@ const config: Config = {
           label: 'Textbook',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/MuhammedSuhaib/dockathon',
           label: 'GitHub',
           position: 'right',
         },
