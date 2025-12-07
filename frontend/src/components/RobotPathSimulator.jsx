@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './styles.css';
 
 const RobotPathSimulator = () => {
   const [robotPosition, setRobotPosition] = useState({ x: 1, y: 1 });
@@ -98,23 +99,6 @@ const RobotPathSimulator = () => {
             key={`${x}-${y}`}
             className={cellClass}
             onClick={() => updateTarget(x, y)}
-            style={{
-              width: '40px',
-              height: '40px',
-              border: '1px solid #ccc',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: isTarget ? 'default' : 'pointer',
-              backgroundColor:
-                isRobot ? '#4CAF50' :
-                isTarget ? '#FF9800' :
-                isObstacle ? '#f44336' :
-                isPath ? '#E8F5E8' :
-                '#fff',
-              color: isRobot || isTarget ? 'white' : 'black',
-              fontWeight: 'bold'
-            }}
           >
             {cellContent}
           </div>
@@ -125,59 +109,30 @@ const RobotPathSimulator = () => {
   };
 
   return (
-    <div style={{
-      padding: '20px',
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      margin: '20px 0',
-      backgroundColor: '#f9f9f9'
-    }}>
+    <div className="robot-path-simulator">
       <h3>🤖 Robot Path Planning Simulator</h3>
       <p>Click on the grid to set a new target location for the robot</p>
 
-      <div style={{
-        display: 'flex',
-        gap: '20px',
-        marginBottom: '20px',
-        flexWrap: 'wrap',
-        alignItems: 'center'
-      }}>
+      <div className="controls">
         <button
           onClick={startSimulation}
           disabled={isRunning}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: isRunning ? '#cccccc' : '#4CAF50',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: isRunning ? 'not-allowed' : 'pointer'
-          }}
         >
           {isRunning ? 'Running...' : 'Start Pathfinding'}
         </button>
 
         <button
           onClick={resetSimulation}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#f44336',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
         >
           Reset
         </button>
 
         <div>
-          <label style={{ marginRight: '10px' }}>
+          <label>
             Speed:
             <select
               value={speed}
               onChange={(e) => setSpeed(Number(e.target.value))}
-              style={{ marginLeft: '5px', padding: '5px' }}
             >
               <option value={1000}>Slow</option>
               <option value={500}>Medium</option>
@@ -187,35 +142,17 @@ const RobotPathSimulator = () => {
         </div>
       </div>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
-        gap: '1px',
-        backgroundColor: '#ccc',
-        maxWidth: '400px',
-        margin: '0 auto'
-      }}>
+      <div className="grid">
         {renderGrid()}
       </div>
 
-      <div style={{
-        marginTop: '15px',
-        padding: '10px',
-        backgroundColor: '#e3f2fd',
-        borderRadius: '4px'
-      }}>
+      <div className="info">
         <p><strong>Current Position:</strong> ({robotPosition.x}, {robotPosition.y})</p>
         <p><strong>Target Position:</strong> ({targetPosition.x}, {targetPosition.y})</p>
         <p><strong>Path Length:</strong> {path.length} steps</p>
       </div>
 
-      <div style={{
-        marginTop: '15px',
-        padding: '10px',
-        backgroundColor: '#fff3cd',
-        borderRadius: '4px',
-        fontStyle: 'italic'
-      }}>
+      <div className="note">
         <strong>Note:</strong> This is a simulation interface. In a real implementation, this would use actual pathfinding algorithms like A* or Dijkstra's algorithm.
       </div>
     </div>
