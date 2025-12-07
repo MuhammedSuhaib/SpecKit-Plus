@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './NeuralNetworkSimulator.css';
 
 const NeuralNetworkSimulator = () => {
   const [inputs, setInputs] = useState([0.5, 0.3]);
@@ -25,21 +26,15 @@ const NeuralNetworkSimulator = () => {
   };
 
   return (
-    <div style={{
-      padding: '20px',
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      margin: '20px 0',
-      backgroundColor: '#f9f9f9'
-    }}>
+    <div className="neural-network-simulator">
       <h3>Neural Network Simulator</h3>
       <p>Adjust inputs and weights to see how they affect the output</p>
 
-      <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+      <div className="inputs-weights">
         <div>
           <h4>Inputs</h4>
           {inputs.map((input, index) => (
-            <div key={index} style={{ marginBottom: '10px' }}>
+            <div key={index} className="input-group">
               <label>Input {index + 1}: </label>
               <input
                 type="range"
@@ -48,7 +43,6 @@ const NeuralNetworkSimulator = () => {
                 step="0.1"
                 value={input}
                 onChange={(e) => handleInputChange(index, e.target.value)}
-                style={{ width: '100px' }}
               />
               <span>{input}</span>
             </div>
@@ -58,7 +52,7 @@ const NeuralNetworkSimulator = () => {
         <div>
           <h4>Weights</h4>
           {weights.map((weight, index) => (
-            <div key={index} style={{ marginBottom: '10px' }}>
+            <div key={index} className="weight-group">
               <label>Weight {index + 1}: </label>
               <input
                 type="range"
@@ -67,7 +61,6 @@ const NeuralNetworkSimulator = () => {
                 step="0.1"
                 value={weight}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                style={{ width: '100px' }}
               />
               <span>{weight}</span>
             </div>
@@ -75,17 +68,11 @@ const NeuralNetworkSimulator = () => {
         </div>
       </div>
 
-      <div style={{
-        padding: '15px',
-        backgroundColor: '#e8f4fd',
-        borderRadius: '5px',
-        textAlign: 'center',
-        fontSize: '1.2em'
-      }}>
+      <div className="output">
         <strong>Output:</strong> {output}
       </div>
 
-      <p style={{ marginTop: '15px', fontStyle: 'italic' }}>
+      <p className="formula">
         Output = (Input₁ × Weight₁) + (Input₂ × Weight₂)
       </p>
     </div>
