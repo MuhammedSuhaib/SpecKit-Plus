@@ -33,12 +33,6 @@
 
 /* Matrix-themed navbar */
 .navbar {
-  background: rgba(0, 20, 10, 0.95) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 255, 65, 0.3);
-}
-
-[data-theme='dark'] .navbar {
   background: rgba(0, 10, 5, 0.95) !important;
   border-bottom: 1px solid rgba(0, 255, 65, 0.3);
 }
@@ -139,5 +133,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 [data-theme='dark'] h1, [data-theme='dark'] h2, [data-theme='dark'] h3, [data-theme='dark'] h4, [data-theme='dark'] h5, [data-theme='dark'] h6 {
+  color: #00ff41 !important;
+}
+
+.navbar__title, .navbar__item {
   color: #00ff41 !important;
 }
