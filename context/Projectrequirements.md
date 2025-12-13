@@ -1,5 +1,4 @@
-2.Neon Serverless Postgres database
-3.Skills     
-5.Better-auth       
-6.Personalize the content       
-7.Translation       
+1.Neon Serverless Postgres database
+2.Better-auth       
+3.Personalize the content       
+4.Translation       
