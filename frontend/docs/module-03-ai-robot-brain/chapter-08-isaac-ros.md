@@ -2,6 +2,10 @@
 sidebar_position: 8
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Isaac ROS: Hardware-Accelerated VSLAM and Navigation
 
 Isaac ROS is a collection of hardware-accelerated perception and navigation packages designed to run on NVIDIA robotics platforms. This chapter explores how Isaac ROS enables efficient Visual SLAM (VSLAM) and navigation on robotic platforms.

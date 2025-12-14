@@ -2,6 +2,10 @@
 sidebar_position: 2
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Voice-to-Action: Using OpenAI Whisper for Voice Commands
 
 This chapter explores the integration of OpenAI Whisper for speech recognition combined with ROS 2 for robotic control, creating a voice-to-action pipeline that enables natural human-robot interaction. This system serves as the foundation for translating human voice commands into robotic actions.

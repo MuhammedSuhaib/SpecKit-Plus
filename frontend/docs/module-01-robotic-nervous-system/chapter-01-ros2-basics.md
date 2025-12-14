@@ -2,6 +2,10 @@
 sidebar_position: 2
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Nodes, Topics, Services
 
 ROS 2 (Robot Operating System 2) provides the communication framework for robotic applications. Understanding its core concepts of nodes, topics, and services is essential for building distributed robotic systems.

@@ -41,6 +41,11 @@ class SelectionRequest(BaseModel):
     selected_text: str
     question: str
 
+# Matches the payload for the translation endpoint (/api/translate-text)
+class TranslationRequest(BaseModel):
+    text: str
+    target_language: str
+
 # ---------------------------
 # FastAPI Endpoints (Matching React expectations)
 # ---------------------------
@@ -148,3 +153,21 @@ async def handle_selection(req: SelectionRequest):
 def health_check():
     """Health check endpoint for Vercel deployment."""
     return {"status": "healthy", "message": "Backend is running"}
+
+@app.post("/api/translate-text")
+async def translate_text(req: TranslationRequest):
+    """Translates text to the specified target language."""
+    from deep_translator import GoogleTranslator
+
+    try:
+        # Validate target language
+        if req.target_language != 'ur':
+            return {"error": "Currently only Urdu (ur) translation is supported"}
+
+        # Perform translation
+        translated = GoogleTranslator(source='en', target=req.target_language).translate(req.text)
+
+        return {"translated_text": translated}
+    except Exception as e:
+        logging.error(f"Translation error: {e}")
+        return {"error": str(e)}

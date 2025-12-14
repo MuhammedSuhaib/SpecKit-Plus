@@ -2,6 +2,10 @@
 sidebar_position: 4
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # NVIDIA Isaac Sim: Photorealistic Simulation and Synthetic Data Generation for Humanoids
 
 NVIDIA Isaac Sim provides a comprehensive simulation environment for robotics development, specifically designed for training humanoid robots. It uses Universal Scene Description (USD) as its core data format, enabling high-fidelity physics simulation, photorealistic rendering, and large-scale synthetic data generation for embodied AI applications.

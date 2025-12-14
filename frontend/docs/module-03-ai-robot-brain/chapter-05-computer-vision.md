@@ -2,6 +2,10 @@
 sidebar_position: 2
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Computer Vision - YOLO and Depth Cameras
 
 ## Introduction to Computer Vision in Robotics

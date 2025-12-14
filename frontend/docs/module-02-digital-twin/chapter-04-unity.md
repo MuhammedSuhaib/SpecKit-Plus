@@ -2,6 +2,10 @@
 sidebar_position: 3
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Unity for High-Fidelity Rendering and Human-Robot Interaction
 
 Unity is a powerful real-time 3D development platform that excels in creating high-fidelity visualizations and human-robot interaction environments. This chapter explores how Unity can be integrated with robotics for advanced simulation and visualization.

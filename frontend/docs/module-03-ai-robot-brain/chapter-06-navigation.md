@@ -2,6 +2,10 @@
 sidebar_position: 3
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Nav2: Path Planning for Bipedal Humanoid Movement
 
 ## Introduction to Humanoid Navigation

@@ -2,6 +2,10 @@
 sidebar_position: 3
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # URDF for Humanoids and Hardware Setup
 
 URDF (Unified Robot Description Format) is essential for defining humanoid robot models. This chapter covers both URDF for humanoids and hardware setup with Jetson Orin and RealSense cameras.

@@ -2,6 +2,10 @@
 sidebar_position: 5
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Autonomous Humanoid Implementation Guide
 
 This chapter provides implementation guidance for creating the complete Autonomous Humanoid system that integrates all the components learned throughout the course. This serves as a practical guide to implement the capstone project described in the previous chapter.

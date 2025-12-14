@@ -2,6 +2,10 @@
 sidebar_position: 6
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Capstone Project: The Autonomous Humanoid
 
 This capstone project brings together all concepts learned throughout the course to create an autonomous humanoid robot capable of receiving voice commands, planning paths, navigating obstacles, identifying objects using computer vision, and manipulating them. This project demonstrates the integration of ROS 2, Gazebo simulation, NVIDIA Isaac, and Vision-Language-Action (VLA) systems.

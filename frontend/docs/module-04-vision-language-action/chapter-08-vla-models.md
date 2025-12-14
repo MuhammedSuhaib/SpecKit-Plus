@@ -2,6 +2,10 @@
 sidebar_position: 4
 ---
 
+import TranslateButton from '@site/src/components/TranslateButton'
+
+<TranslateButton />
+
 # Cognitive Planning with VLA Models - From Language to Action
 
 Vision-Language-Action (VLA) models represent a breakthrough in embodied AI, enabling robots to interpret natural language commands and execute appropriate actions in physical environments. This chapter explores cognitive planning systems that translate high-level language instructions into sequences of robotic actions.
