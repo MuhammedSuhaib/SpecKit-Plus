@@ -1,25 +1,34 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * src/css/custom.css
+ * 
+ * Theme Logic:
+ * Light Mode = "Clean Lab" (White background, Dark Green headers, High Contrast)
+ * Dark Mode  = "Matrix/Terminal" (Deep Black background, Neon Green headers, Glassmorphism)
  */
 
-/* You can override the default Infima variables here. */
+/* --- 1. GLOBAL VARIABLES --- */
 :root {
-  --ifm-color-primary: #00cc44;
+  /* LIGHT MODE VARIABLES */
+  --ifm-color-primary: #00cc44;        /* Standard Green */
   --ifm-color-primary-dark: #00b33c;
   --ifm-color-primary-darker: #00a337;
   --ifm-color-primary-darkest: #008a2e;
   --ifm-color-primary-light: #00e64d;
   --ifm-color-primary-lighter: #1aff5c;
   --ifm-color-primary-lightest: #33ff70;
-  --ifm-color-secondary: #00ff41;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  
+  /* Standard Docusaurus background */
+  --ifm-background-color: #ffffff;
+  --ifm-font-color-base: #1c1e21;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* DARK MODE VARIABLES */
 [data-theme='dark'] {
+  /* The Main Background - Deepest Green/Black (Not pure black) */
+  --ifm-background-color: #020d05; 
+  
+  /* Neon Green Primary */
   --ifm-color-primary: #00ff41;
   --ifm-color-primary-dark: #00e63a;
   --ifm-color-primary-darker: #00d636;
@@ -27,115 +36,180 @@
   --ifm-color-primary-light: #1aff52;
   --ifm-color-primary-lighter: #2dff62;
   --ifm-color-primary-lightest: #4cff75;
-  --ifm-color-secondary: #00cc44;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Text Colors - Soft mint for reading to reduce eye strain */
+  --ifm-font-color-base: #ccffda; 
+  --ifm-heading-color: #00ff41;   
+  
+  --docusaurus-highlighted-code-line-bg: rgba(0, 255, 65, 0.15);
 }
 
-/* Matrix-themed navbar */
+/* --- 2. HEADINGS (The Critical Fix) --- */
+
+/* LIGHT MODE: Dark Forest Green (Professional & Readable on White) */
+h1, h2, h3, h4, h5, h6 {
+  color: #006622 !important; 
+  text-shadow: none !important;
+}
+
+/* DARK MODE: Neon Matrix Green with Glow */
+html[data-theme='dark'] h1, 
+html[data-theme='dark'] h2, 
+html[data-theme='dark'] h3, 
+html[data-theme='dark'] h4, 
+html[data-theme='dark'] h5, 
+html[data-theme='dark'] h6 {
+  color: #00ff41 !important;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+/* --- 3. NAVBAR --- */
+
+/* LIGHT MODE: Clean White */
 .navbar {
-  background: rgba(0, 10, 5, 0.95) !important;
-  border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Matrix-themed footer */
-.footer {
-  background: rgba(0, 15, 5, 1) !important;
-  border-top: 1px solid rgba(0, 255, 65, 0.3);
-  color: #00ff41;
+.navbar__title, .navbar__item {
+  color: #1c1e21;
 }
 
-[data-theme='dark'] .footer {
-  background: rgba(0, 5, 2, 1) !important;
-  border-top: 1px solid rgba(0, 255, 65, 0.3);
+/* DARK MODE: Dark Glass */
+html[data-theme='dark'] .navbar {
+  background: rgba(2, 13, 5, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 255, 65, 0.2);
 }
 
-/* Matrix-themed footer links */
-.footer a {
+html[data-theme='dark'] .navbar__title, 
+html[data-theme='dark'] .navbar__item {
   color: #00ff41 !important;
 }
 
-.footer a:hover {
-  color: #00ff80 !important;
-  text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+/* --- 4. SIDEBAR & MENU --- */
+
+/* LIGHT MODE */
+.sidebar, .menu {
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
 }
 
-/* Matrix-themed buttons */
+/* DARK MODE */
+html[data-theme='dark'] .navbar-sidebar, 
+html[data-theme='dark'] .sidebar, 
+html[data-theme='dark'] .menu {
+  background-color: #020d05 !important;
+  border-right: 1px solid rgba(0, 255, 65, 0.15);
+}
+
+html[data-theme='dark'] .menu__link {
+  color: #ccffda;
+}
+
+html[data-theme='dark'] .menu__link--active {
+  color: #00ff41 !important;
+  background: rgba(0, 255, 65, 0.1);
+}
+
+/* --- 5. CONTENT CONTAINER (The "Floaty Box") --- */
+
+/* LIGHT MODE: Standard Card Style */
+div[style*="zIndex"] {
+  background-color: #ffffff !important;
+  color: #1c1e21 !important; /* Force dark text */
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid #eaeaea;
+}
+
+/* Fix text inside the container for Light Mode */
+div[style*="zIndex"] p,
+div[style*="zIndex"] li,
+div[style*="zIndex"] span {
+  color: #1c1e21; 
+}
+
+/* DARK MODE: Matrix Glass Panel */
+html[data-theme='dark'] div[style*="zIndex"] {
+  background-color: rgba(5, 15, 7, 0.85) !important; 
+  border: 1px solid rgba(0, 255, 65, 0.15) !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(5px); /* Blurs the background rain/canvas */
+  color: #ccffda !important;
+}
+
+/* Fix text inside the container for Dark Mode */
+html[data-theme='dark'] div[style*="zIndex"] p,
+html[data-theme='dark'] div[style*="zIndex"] li {
+  color: #ccffda !important;
+}
+
+/* --- 6. BUTTONS --- */
+
 .button--primary {
-  background-color: #00cc44 !important;
-  border-color: #00cc44 !important;
-  color: white !important;
+  transition: all 0.3s ease;
+}
+
+/* DARK MODE BUTTONS */
+html[data-theme='dark'] .button--primary {
+  background-color: rgba(0, 204, 68, 0.1) !important;
+  border: 1px solid #00ff41 !important;
+  color: #00ff41 !important;
   text-shadow: none;
 }
 
-.button--primary:hover {
+html[data-theme='dark'] .button--primary:hover {
   background-color: #00ff41 !important;
-  border-color: #00ff41 !important;
-  color: white !important;
-  text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+  color: #000000 !important;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
 }
 
-.button--secondary {
+html[data-theme='dark'] .button--secondary {
   background-color: transparent !important;
   border-color: #00ff41 !important;
   color: #00ff41 !important;
 }
 
-.button--secondary:hover {
+html[data-theme='dark'] .button--secondary:hover {
   background-color: rgba(0, 255, 65, 0.1) !important;
+}
+
+/* --- 7. FOOTER --- */
+
+/* LIGHT MODE */
+.footer {
+  background: #f5f6f7;
+  color: #1c1e21;
+}
+
+/* DARK MODE */
+html[data-theme='dark'] .footer {
+  background: #000502 !important;
+  border-top: 1px solid rgba(0, 255, 65, 0.2);
+  color: #ccffda;
+}
+
+html[data-theme='dark'] .footer a {
+  color: #00ff41 !important;
+}
+
+html[data-theme='dark'] .footer a:hover {
   color: #00ff80 !important;
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
 }
 
-/* Ensure text is readable over MatrixCanvas background */
-div[style*="zIndex"] {
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 2rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
+/* --- 8. UTILITY FIXES --- */
 
-[data-theme='dark'] div[style*="zIndex"] {
-  background-color: rgba(20, 20, 20, 0.85);
-  color: white;
-}
-
-/* Ensure text color is readable in both themes */
-div[style*="zIndex"] h1,
-div[style*="zIndex"] h2,
-div[style*="zIndex"] h3,
-div[style*="zIndex"] h4,
-div[style*="zIndex"] h5,
-div[style*="zIndex"] h6,
-div[style*="zIndex"] p,
-div[style*="zIndex"] li {
-  color: var(--ifm-font-color-base) !important;
-}
-
-/* Make sure MatrixCanvas doesn't cover sidebar */
+/* Ensure canvas (Matrix Rain) stays behind content */
 canvas[style*="fixed"] {
   z-index: 0 !important;
 }
 
-/* Make sure content stays on top */
 .main-wrapper {
   position: relative;
   z-index: 1;
-}
-
-/* Ensure sidebar stays on top */
-.navbar-sidebar, .sidebar, .menu {
-  z-index: 10000 !important;
-}
-
-/* Matrix-themed headings */
-h1, h2, h3, h4, h5, h6 {
-  color: #00ff41 !important;
-}
-
-[data-theme='dark'] h1, [data-theme='dark'] h2, [data-theme='dark'] h3, [data-theme='dark'] h4, [data-theme='dark'] h5, [data-theme='dark'] h6 {
-  color: #00ff41 !important;
-}
-
-.navbar__title, .navbar__item {
-  color: #00ff41 !important;
 }
