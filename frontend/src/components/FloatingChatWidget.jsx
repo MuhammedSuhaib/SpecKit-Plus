@@ -40,7 +40,7 @@ const FloatingChatWidget = () => {
     <div className="floating-chat-widget">
       {isOpen && (
         <div className={`chat-window ${isMinimized ? 'minimized' : 'expanded'}`}>
-          
+
           {/* Widget Header - Styled like a Terminal Title Bar */}
           <div className="chat-header" onClick={() => setIsMinimized(!isMinimized)}>
             <div className="chat-status">
@@ -98,10 +98,10 @@ const FloatingChatWidget = () => {
           --primary-dim: rgba(0, 255, 65, 0.3);
           --border: #1a3320;
           --text: #ccffda;
-          
+
           position: fixed;
-          bottom: 30px;
-          right: 30px;
+          bottom: 30px; /* Moved up to avoid back to top icon */
+          right: 70px;
           z-index: 9999;
           font-family: "Courier New", Courier, monospace;
         }
@@ -209,9 +209,9 @@ const FloatingChatWidget = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          
+
           /* VISIBILITY FIX: Give it a faint green background by default */
-          background: rgba(0, 255, 65, 0.1); 
+          background: rgba(0, 255, 65, 0.1);
           border: 1px solid var(--border);
           color: var(--primary);
           border-radius: 8px;
@@ -245,7 +245,7 @@ const FloatingChatWidget = () => {
           height: auto;
           width: 250px;
         }
-        
+
         /* When minimized, just show the header, no body */
         .minimized .chat-header {
           border-bottom: none;
@@ -260,7 +260,7 @@ const FloatingChatWidget = () => {
             bottom: 20px;
             max-height: 80vh;
           }
-          
+
           .chat-body {
             height: 60vh;
           }

@@ -4,12 +4,46 @@ export default function TranslateButton() {
   const [isTranslating, setIsTranslating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Helper function to replace text content while preserving HTML structure
+  const replaceTextContent = (element: HTMLElement, originalText: string, translatedText: string) => {
+    // For elements with no child elements, we can safely set textContent
+    if (element.children.length === 0) {
+      element.textContent = translatedText;
+      return;
+    }
+
+    // For elements with child elements, we need to replace text nodes carefully
+    // without disrupting the DOM structure
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT,
+      null
+    );
+
+    const textNodes: Text[] = [];
+    let node;
+    while (node = walker.nextNode()) {
+      textNodes.push(node as Text);
+    }
+
+    // Replace text in each text node that matches the original text
+    textNodes.forEach(textNode => {
+      // Only replace if the text node contains the exact original text
+      if (textNode.textContent?.trim() === originalText.trim()) {
+        textNode.textContent = translatedText;
+      } else if (textNode.textContent?.includes(originalText)) {
+        // If it contains the original text as a substring, replace just that part
+        textNode.textContent = textNode.textContent?.replace(originalText, translatedText) || '';
+      }
+    });
+  };
+
   const translate = async () => {
     if (isTranslating) return; // Prevent multiple clicks
-    
+
     setIsTranslating(true);
     setError(null);
-    
+
     try {
       // Get the article content
       const articleElement = document.querySelector('article');
@@ -20,7 +54,7 @@ export default function TranslateButton() {
       // Get all text content except code blocks
       const elements = articleElement.querySelectorAll('div, p, h1, h2, h3, h4, h5, h6, span, li');
       const contentToTranslate = Array.from(elements).map(el => ({
-        element: el,
+        element: el as HTMLElement, // Cast to HTMLElement to access style properties
         originalText: el.textContent || '',
         isCode: el.closest('pre, code') !== null
       })).filter(item => item.originalText.trim() !== '' && !item.isCode);
@@ -56,8 +90,14 @@ export default function TranslateButton() {
 
           const { translated_text } = await res.json();
 
-          // Update the text content while preserving HTML structure
-          item.element.textContent = translated_text;
+          // Apply proper Urdu formatting with right-to-left direction
+          item.element.setAttribute('dir', 'rtl');
+          item.element.style.direction = 'rtl'; // Right-to-left for Urdu
+          item.element.style.textAlign = 'right';
+          item.element.style.fontFamily = 'Tahoma, Arial, sans-serif'; // Better font support for Urdu
+
+          // Preserve the element's structure by only replacing text nodes
+          replaceTextContent(item.element, item.originalText, translated_text);
         }
       }
 
@@ -72,8 +112,8 @@ export default function TranslateButton() {
 
   return (
     <div className="translate-button-container" style={{ marginBottom: '20px' }}>
-      <button 
-        onClick={translate} 
+      <button
+        onClick={translate}
         disabled={isTranslating}
         style={{
           padding: '8px 16px',

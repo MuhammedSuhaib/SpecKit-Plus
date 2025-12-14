@@ -118,6 +118,11 @@ More Detailed Guides:
 ---
 1.  **Analyze & Infer:** Analyze file purposes (models, services, tests, utils) to infer logical directories.
 2.  **Modularize:** Group similar files/folders into small, cohesive modules.
+- If Pydantic models are defined inside non-model Python files, detect them and propose moving them into a dedicated `models/` or `schemas/` module. Update all imports carefully after approval.
+- If TypeScript types or interfaces are defined inside non-type files (components, services, utils), detect them and propose moving them into a dedicated `types/` or `interfaces/` module. Update all imports carefully after approval.
+- If inline, internal, or file-scoped CSS (including styled blocks or embedded styles) is detected, propose extracting it into a dedicated `styles/` or `css` module/file. Update all references carefully after approval.
+- These rules are **proposal-only** and must never be executed without explicit user approval.
+
 3.  **Respect Configuration:** Ask the user if they have specific folder names or a mapping config to respect before inference.
 4.  **Plan & Approve:** Print a **tree-view proposal** of the new structure. **STOP** and wait for user approval.
 5.  **Move Files:** Move files to approved directories. Keep entry points (e.g., `main.py`) in the root.
@@ -136,5 +141,6 @@ More Detailed Guides:
 15. **Cleanup:** Identify empty folders/files. Ask user permission to delete them.
 16. **Documentation:** Update the file structure section in `README.md`.
 17. **Final Report:** specific summary of moves, fixes, and any manual interventions required.
+
 
 End of system prompt.
