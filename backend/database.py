@@ -95,6 +95,19 @@ async def init_db():
             )
         """)
 
+        # Create user_profiles table for storing user background information
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS user_profiles (
+                id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                user_id TEXT UNIQUE,  -- Better Auth user ID
+                software_background TEXT,
+                hardware_access TEXT,
+                learning_goal TEXT,
+                created_at TIMESTAMP DEFAULT NOW(),
+                updated_at TIMESTAMP DEFAULT NOW()
+            )
+        """)
+
         logging.info("Database tables created/verified successfully")
 
 async def save_conversation(user_id: Optional[str], title: str, messages: list):
@@ -144,6 +157,43 @@ async def get_conversations(user_id: Optional[str] = None):
             """)
 
     return [dict(row) for row in conversations]
+
+async def save_user_profile(user_id: str, software_background: str, hardware_access: str, learning_goal: str):
+    """Save user profile information to the database"""
+    async with db_manager.get_connection() as conn:
+        if conn is None:
+            logging.warning("Database connection not available, skipping profile save")
+            return None
+
+        # Insert or update user profile
+        profile_id = await conn.fetchval("""
+            INSERT INTO user_profiles (user_id, software_background, hardware_access, learning_goal)
+            VALUES ($1, $2, $3, $4)
+            ON CONFLICT (user_id)
+            DO UPDATE SET
+                software_background = EXCLUDED.software_background,
+                hardware_access = EXCLUDED.hardware_access,
+                learning_goal = EXCLUDED.learning_goal,
+                updated_at = NOW()
+            RETURNING id
+        """, user_id, software_background, hardware_access, learning_goal)
+
+    return profile_id
+
+async def get_user_profile(user_id: str):
+    """Get user profile information from the database"""
+    async with db_manager.get_connection() as conn:
+        if conn is None:
+            logging.warning("Database connection not available, returning None")
+            return None
+
+        profile = await conn.fetchrow("""
+            SELECT user_id, software_background, hardware_access, learning_goal, created_at, updated_at
+            FROM user_profiles
+            WHERE user_id = $1
+        """, user_id)
+
+    return dict(profile) if profile else None
 
 async def get_conversation_messages(conversation_id: str):
     """Get all messages for a specific conversation"""

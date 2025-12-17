@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { authClient } from '../lib/auth-client';
+import SignupModal from './SignupModal';
 
 const AuthComponent = () => {
   const [session, setSession] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showSignupModal, setShowSignupModal] = useState(false);
 
   useEffect(() => {
     const checkSession = async () => {
@@ -29,28 +31,21 @@ const AuthComponent = () => {
   }, []);
 
   const handleSignIn = async () => {
+    // For now, keep the simple prompt approach, but you could also create a SignInModal
     try {
-      await authClient.signIn.email({
-        email: prompt('Enter your email:'),
-        password: prompt('Enter your password:'),
-        callbackURL: '/', // Redirect after sign in
-      });
+      const email = prompt('Enter your email:');
+      const password = prompt('Enter your password:');
+
+      if (email && password) {
+        await authClient.signIn.email({
+          email,
+          password,
+          callbackURL: '/', // Redirect after sign in
+        });
+      }
     } catch (error) {
       console.error('Sign in error:', error);
       alert('Sign in failed: ' + error.message);
-    }
-  };
-
-  const handleSignUp = async () => {
-    try {
-      await authClient.signUp.email({
-        email: prompt('Enter your email:'),
-        password: prompt('Enter your password:'),
-        name: prompt('Enter your name:'),
-      });
-    } catch (error) {
-      console.error('Sign up error:', error);
-      alert('Sign up failed: ' + error.message);
     }
   };
 
@@ -102,7 +97,7 @@ const AuthComponent = () => {
             Sign In
           </button>
           <button
-            onClick={handleSignUp}
+            onClick={() => setShowSignupModal(true)}
             style={{
               padding: '5px 10px',
               backgroundColor: '#00ff41',
@@ -116,6 +111,12 @@ const AuthComponent = () => {
           </button>
         </>
       )}
+
+      {/* Signup Modal */}
+      <SignupModal
+        open={showSignupModal}
+        onClose={() => setShowSignupModal(false)}
+      />
     </div>
   );
 };

@@ -8,7 +8,7 @@ from simple_agents.aagents import Triage_Agent
 from pydantic import BaseModel
 from services.rag import RAGService
 from data.vector_store import VectorStore
-from database import db_manager, init_db, save_conversation, get_conversations, get_conversation_messages
+from database import db_manager, init_db, save_conversation, get_conversations, get_conversation_messages, save_user_profile
 
 # Initialize services globally but handle initialization errors gracefully
 try:
@@ -271,6 +271,27 @@ async def get_conversations_endpoint(user_id: str = None):
     except Exception as e:
         logging.error(f"Failed to get conversations: {e}")
         raise HTTPException(status_code=500, detail="Failed to get conversations")
+
+
+class UserProfileRequest(BaseModel):
+    user_id: str
+    background: dict  # Contains software, hardware, goal
+
+
+@app.post("/api/user-background")
+async def save_user_background(req: UserProfileRequest):
+    """Save user background information to the database"""
+    try:
+        profile_id = await save_user_profile(
+            user_id=req.user_id,
+            software_background=req.background.get('software', ''),
+            hardware_access=req.background.get('hardware', ''),
+            learning_goal=req.background.get('goal', '')
+        )
+        return {"profile_id": profile_id}
+    except Exception as e:
+        logging.error(f"Failed to save user profile: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save user profile")
 
 
 @app.get("/api/conversations/{conversation_id}")
