@@ -17,8 +17,19 @@ const auth = createAuthClient({
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await auth.signUp.email({ name, email, password });
-  };
+
+  if (!name || !email || password.length < 8) {
+    alert("Invalid input");
+    return;
+  }
+
+  const res = await auth.signUp.email({ name, email, password });
+
+  if (res?.error) {
+    console.error(res.error);
+  }
+};
+
 
   return (
     <form onSubmit={submit}>
