@@ -5,10 +5,10 @@ const getApiBase = () => {
   if (typeof window !== 'undefined' && window.location) {
     return window.location.hostname === "localhost"
       ? "http://localhost:8000"
-      : "https://speckit-plus-production.up.railway.app";
+      : "https://muhammedsuhaib-humanoids.hf.space";
   }
   // Default to production URL during SSR
-  return "https://speckit-plus-production.up.railway.app";
+  return "https://muhammedsuhaib-humanoids.hf.space";
 };
 
 const API_BASE = getApiBase();
