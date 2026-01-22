@@ -27,7 +27,7 @@ class VectorStore:
                  collection_name: str = "Humanoids",
                  timeout: int = 30,
                  grpc_port: int = 6334,
-                 prefer_grpc: bool = True,
+                 prefer_grpc: bool = False,
                  recreate_collection: bool = False):
         """
         Initialize the vector store with Qdrant client.
