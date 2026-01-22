@@ -89,6 +89,7 @@ The textbook platform follows a modern microservices architecture:
 
 2. Install dependencies:
    ```bash
+   .\.venv\Scripts\activate
    uv sync
    ```
 

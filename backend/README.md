@@ -1,4 +1,15 @@
-# SpecKit-Plus Backend
+---
+title: Humanoids
+emoji: 🐨
+colorFrom: gray
+colorTo: purple
+sdk: docker
+pinned: false
+---
+
+# SpecKit-Plus Backend (Humanoids)
+
+This is the AI-powered backend for the **Physical AI & Humanoid Robotics** interactive textbook. It provides Retrieval-Augmented Generation (RAG) capabilities, allowing students to query textbook content and get context-aware explanations.
 
 ## Directory Structure
 

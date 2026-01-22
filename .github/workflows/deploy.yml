@@ -1,23 +1,23 @@
-name: Deploy to GitHub Pages
+name: Unified Deployment (Frontend & Backend)
 
 on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
+      - main
+
+permissions:
+  contents: write
 
 jobs:
-  deploy:
-    name: Deploy to GitHub Pages
+  # JOB 1: Deploy Frontend to GitHub Pages
+  deploy-frontend:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -25,20 +25,49 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Install dependencies
+      - name: Install & Build Frontend
         run: |
           cd frontend
           pnpm install
-
-      - name: Build website
-        run: |
-          cd frontend
           pnpm build
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/build
           publish_branch: gh-pages
+
+  # JOB 2: Sync Backend to Hugging Face Spaces
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HUMANOIDS }}
+          HF_REPO: ${{ secrets.HUMANOIDSSPACE }}
+        run: |
+          uv run --with huggingface_hub python -c "
+          import os
+          from huggingface_hub import HfApi
+          api = HfApi()
+          api.upload_folder(
+              folder_path='backend',
+              repo_id=os.getenv('HF_REPO'),
+              repo_type='space',
+              token=os.getenv('HF_TOKEN'),
+              delete_patterns=['*'] # This ensures HF matches your local backend folder exactly
+          )"
