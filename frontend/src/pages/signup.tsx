@@ -13,7 +13,7 @@ type Background = {
 };
 
 const auth = createAuthClient({
-  baseURL: "https://better-auth-neon-db.vercel.app",
+  baseURL: "https://better-auth-neon-db.netlify.app/",
 });
 
 export default function SignupPage() {
@@ -77,7 +77,7 @@ export default function SignupPage() {
 
                 // Save personalization data to database with categories
                 const response = await fetch(
-                "https://better-auth-neon-db.vercel.app/api/user-background",
+                "https://better-auth-neon-db.netlify.app//api/user-background",
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },

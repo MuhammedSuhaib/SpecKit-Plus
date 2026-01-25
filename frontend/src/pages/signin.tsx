@@ -42,7 +42,7 @@ export default function SigninPage() {
               const { createAuthClient } = require("better-auth/client");
 
               const auth = createAuthClient({
-                baseURL: "https://better-auth-neon-db.vercel.app",
+                baseURL: "https://better-auth-neon-db.netlify.app/",
               });
 
               const [email, setEmail] = useState<string>("");
